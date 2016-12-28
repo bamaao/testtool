@@ -1,2 +1,2 @@
 # testtool
-A tool to help test Restful API.
+A tool to test Restful API.
