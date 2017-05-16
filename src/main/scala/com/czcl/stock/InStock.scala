@@ -15,7 +15,7 @@ import org.apache.http.util.EntityUtils
   */
 class InStock extends TestToolBase{
 
-  sessionId = "9fe7ec05ac8643a4bc28c8c6f518ff53"
+  sessionId = "4156277f89d442fc804a3775fdd4ea8a"
 
   //登录
   def login(userName:String, password:String): Unit ={
@@ -56,7 +56,7 @@ class InStock extends TestToolBase{
   //物料变更记录,时间全部是默认北京时间
   def testMaterialChangeRecords(beginDate:String, endDate:String): Unit = {
     val parameters = Map("beginDate"->beginDate, "endDate"->endDate)
-    getWithSessionAndParamaters("/openapi/material/changes", parameters)
+    getWithSessionAndParamaters("openapi/material/changes", parameters)
   }
 
   //物料类别变更记录,时间全部是默认北京时间
@@ -77,10 +77,46 @@ class InStock extends TestToolBase{
     getWithSessionAndParamaters("openapi/suppliers/changes", parameters)
   }
 
+  //供应商供货价格变更记录
+  def testSupplierPriceChangeRecords(beginDate:String, endDate:String): Unit = {
+    val parameters = Map("beginDate"->beginDate, "endDate"->endDate)
+    getWithSessionAndParamaters("openapi/suppliers/prices/changes", parameters)
+  }
+
   //餐厅收货记录
   def testPurchaseChangeRecords(beginDate:String, endDate:String): Unit = {
     val parameters = Map("beginDate"->beginDate, "endDate"->endDate)
     getWithSessionAndParamaters("openapi/purchase/changes", parameters)
+  }
+
+  //申购单(已完成)
+  def testRequisition(beginDate:String, endDate:String): Unit = {
+    val parameters = Map("beginDate"->beginDate, "endDate"->endDate)
+    getWithSessionAndParamaters("openapi/requisition/changes", parameters)
+  }
+
+  //采购订单
+  def testOrder(beginDate:String, endDate:String): Unit = {
+    val parameters = Map("beginDate" -> beginDate, "endDate" -> endDate)
+    getWithSessionAndParamaters("openapi/purchase/order/changes", parameters)
+  }
+
+  //退货记录
+  def testReturn(beginDate:String, endDate:String): Unit = {
+    val parameters = Map("beginDate" -> beginDate, "endDate" -> endDate)
+    getWithSessionAndParamaters("openapi/return/changes", parameters)
+  }
+
+  //调拨单
+  def testAllocation(beginDate:String, endDate:String): Unit = {
+    val parameters = Map("beginDate" -> beginDate, "endDate" -> endDate)
+    getWithSessionAndParamaters("openapi/allocation/changes", parameters)
+  }
+
+  //盘点单
+  def testInventory(beginDate:String, endDate:String): Unit = {
+    val parameters = Map("beginDate" -> beginDate, "endDate" -> endDate)
+    getWithSessionAndParamaters("openapi/inventory/changes", parameters)
   }
 
 }
@@ -88,14 +124,21 @@ class InStock extends TestToolBase{
 object InStock {
   def main(args: Array[String]): Unit = {
     val inStock = new InStock()
-//    new InStock().login("szbyy008", "1")
-//    new InStock().testGetStoresOfTenant(1)
+//    inStock.login("18975807256", "654321")
+    inStock.login("szbyy008", "1")
+//    inStock.testGetStoresOfTenant(1)
 //    inStock.testGetDepartmentsOfStore(1)
-//    inStock.testMaterialChangeRecords("2017-01-11 00:00:00", "2017-01-12 00:00:00")
+//    inStock.testMaterialChangeRecords("2017-01-11 00:00:00", "2017-01-11 10:00:00")
 //    inStock.testMaterialClassChangeRecords("2015-12-20 00:00:00", "2015-12-25 00:00:00")
 //    inStock.testMaterialUnitChangeRecords("2015-12-01 00:00:00", "2017-01-23 00:00:00")
 //    inStock.testSupplierChangeRecords("2015-12-01 00:00:00", "2017-01-23 00:00:00")
-    inStock.testPurchaseChangeRecords("2017-01-01 00:00:00", "2017-01-23 00:00:00")
+//      inStock.testSupplierPriceChangeRecords("2016-06-01 00:00:00", "2016-07-01 00:00:00")
+//    inStock.testPurchaseChangeRecords("2017-03-07 00:00:00", "2017-03-07 12:00:00")
+//    inStock.testRequisition("2017-01-01 00:00:00", "2017-01-23 00:00:00")
+//    inStock.testOrder("2017-01-01 00:00:00", "2017-01-23 00:00:00")
+//    inStock.testAllocation("2016-09-01 00:00:00", "2016-10-01 00:00:00")
+//    inStock.testReturn("2016-12-01 00:00:00", "2017-01-01 00:00:00")
+//    inStock.testInventory("2016-11-01 00:00:00", "2016-12-01 00:00:00")
   }
 }
 

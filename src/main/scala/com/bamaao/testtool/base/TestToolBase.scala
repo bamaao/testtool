@@ -19,6 +19,7 @@ class TestToolBase {
 
   //schema,host,port
   val HttpUrl = "http://test.mealcome.cn/meallinkapi/"
+//  val HttpUrl = "http://api.mealcome.cn/"
   var sessionId:String = ""
 
   //GET 带sessionId
